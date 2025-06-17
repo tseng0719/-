@@ -1,160 +1,242 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>新生社團推薦問卷（多選屬性版）</title>
-<style>
-  body { font-family: "Segoe UI", sans-serif; background:#f6f9fc; padding:2rem; color:#333; }
-  .container { max-width: 700px; margin:auto; background:#fff; padding:2rem; border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.1);}
-  h1 { text-align:center; margin-bottom:2rem; }
-  .question { margin-bottom: 1.5rem; }
-  .options { display:flex; justify-content:space-between; margin-top:0.5rem; }
-  .options label { flex:1; text-align:center; }
-  .options input[type="radio"] { appearance:none; width:30px; height:30px; border-radius:50%; background:#ddd; transition:transform 0.2s;}
-  .options input[type="radio"]:checked { background:#4f46e5; transform:scale(1.3); }
-  .categories { margin-bottom: 2rem; }
-  .categories label { margin-right: 1rem; }
-  .submit-btn { display:block; margin:2rem auto 0; padding:0.75rem 1.5rem; font-size:1rem; background:#4f46e5; color:#fff; border:none; border-radius:8px; cursor:pointer; }
-  .result { display:none; margin-top: 2rem; }
-  .club-card { border:1px solid #ddd; border-left:6px solid #4f46e5; border-radius:8px; padding:1rem; margin-bottom:1rem; background:#fafafa; }
-  .tags { margin:0.5rem 0; font-size:0.9rem; color:#666; }
-  .score { font-weight:bold; color:#4f46e5; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>新生社團推薦問卷</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f6f9fc;
+      padding: 1rem;
+      color: #333;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .question {
+      margin-bottom: 1.8rem;
+    }
+    .options {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .options label {
+      flex: 1 1 18%;
+      text-align: center;
+      position: relative;
+      margin-bottom: 0.3rem;
+      min-width: 60px;
+    }
+    .options input[type="radio"] {
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #ddd;
+      transition: transform 0.2s;
+      vertical-align: middle;
+      cursor: pointer;
+      margin-right: 0.4rem;
+    }
+    .options input[type="radio"]:checked {
+      background-color: #4f46e5;
+      transform: scale(1.3);
+    }
+    .submit-btn {
+      display: block;
+      margin: 2rem auto 0;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background-color: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      max-width: 250px;
+      width: 100%;
+    }
+    .result {
+      display: none;
+      margin-top: 2rem;
+    }
+    .club-card {
+      border: 1px solid #ddd;
+      border-left: 6px solid #4f46e5;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: #fafafa;
+    }
+    .tags {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .score {
+      font-weight: bold;
+      color: #4f46e5;
+    }
+
+    @media (max-width: 480px) {
+      .options label {
+        flex: 1 1 48%;
+        min-width: auto;
+        margin-bottom: 0.6rem;
+      }
+      .submit-btn {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<div class="container">
-  <h1>🎯 新生社團推薦問卷（多選屬性版）</h1>
-  
-  <form id="form">
-    <div class="question">
-      <label>1. 我喜歡與人互動，個性外向</label>
-      <div class="options">
-        <label><input type="radio" name="q1" value="1" required> 非常不同意</label>
-        <label><input type="radio" name="q1" value="2"> 不同意</label>
-        <label><input type="radio" name="q1" value="3"> 普通</label>
-        <label><input type="radio" name="q1" value="4"> 同意</label>
-        <label><input type="radio" name="q1" value="5"> 非常同意</label>
+  <div class="container">
+    <h1>🎯 新生社團推薦問卷</h1>
+    <form id="form">
+      <div class="question">
+        <label>我喜歡與人互動，個性外向</label>
+        <div class="options">
+          <label><input type="radio" name="q1" value="1">非常不同意</label>
+          <label><input type="radio" name="q1" value="2">不同意</label>
+          <label><input type="radio" name="q1" value="3">普通</label>
+          <label><input type="radio" name="q1" value="4">同意</label>
+          <label><input type="radio" name="q1" value="5">非常同意</label>
+        </div>
       </div>
-    </div>
 
-    <div class="question">
-      <label>2. 我喜歡團隊合作完成一件事</label>
-      <div class="options">
-        <label><input type="radio" name="q2" value="1" required> 非常不同意</label>
-        <label><input type="radio" name="q2" value="2"> 不同意</label>
-        <label><input type="radio" name="q2" value="3"> 普通</label>
-        <label><input type="radio" name="q2" value="4"> 同意</label>
-        <label><input type="radio" name="q2" value="5"> 非常同意</label>
+      <div class="question">
+        <label>我喜歡團隊合作完成一件事</label>
+        <div class="options">
+          <label><input type="radio" name="q2" value="1">非常不同意</label>
+          <label><input type="radio" name="q2" value="2">不同意</label>
+          <label><input type="radio" name="q2" value="3">普通</label>
+          <label><input type="radio" name="q2" value="4">同意</label>
+          <label><input type="radio" name="q2" value="5">非常同意</label>
+        </div>
       </div>
-    </div>
 
-    <div class="question">
-      <label>3. 我喜歡技術類的活動（如剪影片、設計、寫程式）</label>
-      <div class="options">
-        <label><input type="radio" name="q3" value="1" required> 非常不同意</label>
-        <label><input type="radio" name="q3" value="2"> 不同意</label>
-        <label><input type="radio" name="q3" value="3"> 普通</label>
-        <label><input type="radio" name="q3" value="4"> 同意</label>
-        <label><input type="radio" name="q3" value="5"> 非常同意</label>
+      <!-- 技術類細分 -->
+      <div class="question">
+        <label>我喜歡拍攝和剪輯影片，做影像後製</label>
+        <div class="options">
+          <label><input type="radio" name="q3a" value="1">非常不同意</label>
+          <label><input type="radio" name="q3a" value="2">不同意</label>
+          <label><input type="radio" name="q3a" value="3">普通</label>
+          <label><input type="radio" name="q3a" value="4">同意</label>
+          <label><input type="radio" name="q3a" value="5">非常同意</label>
+        </div>
       </div>
-    </div>
-
-    <div class="question">
-      <label>4. 我喜歡創作或欣賞藝術</label>
-      <div class="options">
-        <label><input type="radio" name="q4" value="1" required> 非常不同意</label>
-        <label><input type="radio" name="q4" value="2"> 不同意</label>
-        <label><input type="radio" name="q4" value="3"> 普通</label>
-        <label><input type="radio" name="q4" value="4"> 同意</label>
-        <label><input type="radio" name="q4" value="5"> 非常同意</label>
+      <div class="question">
+        <label>我喜歡寫程式、設計網站或開發應用程式</label>
+        <div class="options">
+          <label><input type="radio" name="q3b" value="1">非常不同意</label>
+          <label><input type="radio" name="q3b" value="2">不同意</label>
+          <label><input type="radio" name="q3b" value="3">普通</label>
+          <label><input type="radio" name="q3b" value="4">同意</label>
+          <label><input type="radio" name="q3b" value="5">非常同意</label>
+        </div>
       </div>
-    </div>
-
-    <div class="question">
-      <label>5. 我喜歡表演或在群體中發光</label>
-      <div class="options">
-        <label><input type="radio" name="q5" value="1" required> 非常不同意</label>
-        <label><input type="radio" name="q5" value="2"> 不同意</label>
-        <label><input type="radio" name="q5" value="3"> 普通</label>
-        <label><input type="radio" name="q5" value="4"> 同意</label>
-        <label><input type="radio" name="q5" value="5"> 非常同意</label>
+      <div class="question">
+        <label>我喜歡平面設計、繪製插畫或海報設計</label>
+        <div class="options">
+          <label><input type="radio" name="q3c" value="1">非常不同意</label>
+          <label><input type="radio" name="q3c" value="2">不同意</label>
+          <label><input type="radio" name="q3c" value="3">普通</label>
+          <label><input type="radio" name="q3c" value="4">同意</label>
+          <label><input type="radio" name="q3c" value="5">非常同意</label>
+        </div>
       </div>
+      <div class="question">
+        <label>我喜歡用電腦軟體創作音樂或混音</label>
+        <div class="options">
+          <label><input type="radio" name="q3d" value="1">非常不同意</label>
+          <label><input type="radio" name="q3d" value="2">不同意</label>
+          <label><input type="radio" name="q3d" value="3">普通</label>
+          <label><input type="radio" name="q3d" value="4">同意</label>
+          <label><input type="radio" name="q3d" value="5">非常同意</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>我喜歡創作或欣賞藝術</label>
+        <div class="options">
+          <label><input type="radio" name="q4" value="1">非常不同意</label>
+          <label><input type="radio" name="q4" value="2">不同意</label>
+          <label><input type="radio" name="q4" value="3">普通</label>
+          <label><input type="radio" name="q4" value="4">同意</label>
+          <label><input type="radio" name="q4" value="5">非常同意</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>我喜歡表演或在群體中發光</label>
+        <div class="options">
+          <label><input type="radio" name="q5" value="1">非常不同意</label>
+          <label><input type="radio" name="q5" value="2">不同意</label>
+          <label><input type="radio" name="q5" value="3">普通</label>
+          <label><input type="radio" name="q5" value="4">同意</label>
+          <label><input type="radio" name="q5" value="5">非常同意</label>
+        </div>
+      </div>
+
+      <button class="submit-btn" type="button" onclick="calculateRecommendation()">送出問卷並推薦社團</button>
+    </form>
+
+    <div class="result" id="result">
+      <h2>🎉 為你推薦的社團</h2>
+      <div id="clubResults"></div>
     </div>
-
-    <fieldset class="categories">
-      <legend>請選擇你感興趣的社團屬性（可多選）</legend>
-      <label><input type="checkbox" name="category" value="學術性"> 學術性</label>
-      <label><input type="checkbox" name="category" value="體能性"> 體能性</label>
-      <label><input type="checkbox" name="category" value="休閒聯誼性"> 休閒聯誼性</label>
-      <label><input type="checkbox" name="category" value="藝術性"> 藝術性</label>
-      <label><input type="checkbox" name="category" value="音樂性"> 音樂性</label>
-      <label><input type="checkbox" name="category" value="服務性"> 服務性</label>
-    </fieldset>
-
-    <button class="submit-btn" type="button" onclick="calculateRecommendation()">送出問卷並推薦社團</button>
-  </form>
-
-  <div class="result" id="result">
-    <h2>🎉 為你推薦的社團</h2>
-    <div id="clubResults"></div>
   </div>
-</div>
 
 <script>
-  // 範例社團資料
   const clubs = [
-    { name: "健言社", category: "學術性", traits: [4,4,2,2,3], desc: "致力於語言學習與交流。" },
-    { name: "登山社", category: "體能性", traits: [3,5,1,1,2], desc: "熱愛戶外登山與冒險。" },
-    { name: "僑生聯誼會", category: "休閒聯誼性", traits: [5,3,1,1,4], desc: "為僑生提供交流平台。" },
-    { name: "大千社", category: "學術性", traits: [5,3,2,4,3], desc: "推廣文史與文化研究。" },
-    { name: "國術社", category: "體能性", traits: [2,5,1,2,2], desc: "習練中華武術與身心鍛鍊。" },
-    { name: "高中校友聯合總會", category: "休閒聯誼性", traits: [4,3,1,1,3], desc: "促進校友間交流與聯誼。" },
-    { name: "天文社", category: "學術性", traits: [3,2,3,5,2], desc: "探索宇宙與天文知識。" },
-    { name: "跆拳道社", category: "體能性", traits: [2,5,1,1,3], desc: "推廣跆拳道運動文化。" },
-    { name: "轉學生聯誼會", category: "休閒聯誼性", traits: [5,3,2,2,3], desc: "幫助轉學生適應校園生活。" },
-    { name: "中華醫藥研習社", category: "學術性", traits: [3,2,4,3,2], desc: "學習中醫與藥理知識。" }
-    // 你可以自行擴充更多社團
+    // traits 順序: q1, q2, q3a, q3b, q3c, q3d, q4, q5
+    { name: "管樂社", traits: [5,5,1,1,3,4,4,5], tags: ["#外向", "#合作", "#藝術氣息"], desc: "我們是熱愛吹奏與合奏的大家庭！" },
+    { name: "羽球社", traits: [4,4,1,1,1,1,1,2], tags: ["#活力", "#競賽", "#健康"], desc: "每週都有練習與友誼賽，歡迎來試打！" },
+    { name: "演辯社", traits: [3,3,1,1,1,1,2,5], tags: ["#邏輯", "#口語表達", "#挑戰"], desc: "享受思辨、突破自我，一起訓練腦力與口才！" },
+    { name: "動漫社", traits: [2,2,4,1,5,1,4,1], tags: ["#創作", "#動漫", "#社交輕鬆"], desc: "歡迎宅宅與畫畫高手們加入我們的動漫世界！" },
+    { name: "資訊研習社", traits: [2,3,1,5,1,1,1,1], tags: ["#技術流", "#自學", "#電腦"], desc: "我們寫程式、玩硬體、做APP，給你技術滿滿的成就感！" },
+    { name: "吉他社", traits: [3,3,1,1,3,5,4,4], tags: ["#音樂", "#表演", "#溫柔系"], desc: "喜歡彈唱與療癒的旋律，歡迎加入吉他社！" },
+    { name: "攝影社", traits: [2,2,5,1,4,1,4,2], tags: ["#攝影眼", "#美感", "#作品分享"], desc: "一起用鏡頭記錄世界，歡迎任何程度的新手老手！" }
   ];
 
   function calculateRecommendation() {
-    // 讀取問卷答案
-    const userTraits = [1,2,3,4,5].map(i => {
-      const sel = document.querySelector(`input[name="q${i}"]:checked`);
-      return sel ? parseInt(sel.value) : 3; // 未選預設3
+    // 預設沒有選擇就設為3（中立）
+    const answers = [
+      "q1","q2","q3a","q3b","q3c","q3d","q4","q5"
+    ].map(name => {
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      return selected ? parseInt(selected.value) : 3;
     });
 
-    // 讀取選擇的屬性（多選）
-    const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
-      .map(el => el.value);
-
-    if(selectedCategories.length === 0){
-      alert("請至少選擇一個社團屬性！");
-      return;
-    }
-
+    // 計算每個社團分數
     clubs.forEach(club => {
-      // 基礎分 = 特質分數乘以社團特質權重加總
-      const baseScore = club.traits.reduce((sum, t, i) => sum + t * userTraits[i], 0);
-
-      // 屬性匹配加分（假設每匹配一個屬性+20分）
-      const categoryScore = selectedCategories.includes(club.category) ? 20 : 0;
-
-      club.score = baseScore + categoryScore;
+      club.score = club.traits.reduce((sum, traitVal, i) => sum + traitVal * answers[i], 0);
     });
 
-    // 依分數由高到低排序
-    clubs.sort((a, b) => b.score - a.score);
+    // 分數排序
+    clubs.sort((a,b) => b.score - a.score);
 
-    // 顯示前三名推薦結果
+    // 顯示前三名
     const resultDiv = document.getElementById("clubResults");
     resultDiv.innerHTML = "";
-    clubs.slice(0, 3).forEach((club, idx) => {
+    clubs.slice(0,3).forEach((club, idx) => {
       resultDiv.innerHTML += `
         <div class="club-card">
           <h3>${["🥇","🥈","🥉"][idx]} ${club.name}</h3>
-          <p>屬性：${club.category}</p>
+          <div class="tags">${club.tags.join(" ")}</div>
           <p>${club.desc}</p>
           <p class="score">推薦分數：${club.score}</p>
         </div>
@@ -162,7 +244,7 @@
     });
 
     document.getElementById("result").style.display = "block";
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
   }
 </script>
 
